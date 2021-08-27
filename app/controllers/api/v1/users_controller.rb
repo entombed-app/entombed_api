@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
       render json: UserSerializer.new(user).serializable_hash.to_json, status: 201
     else
       render json: {
-        error: 'Missing or incorrect user params', 
+        error: 'Missing or incorrect user params',
         status: 400
       }, status: 400
     end
