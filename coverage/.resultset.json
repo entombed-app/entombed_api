@@ -195,7 +195,7 @@
           null,
           null,
           1,
-          1,
+          2,
           null,
           null,
           null,
@@ -204,9 +204,28 @@
           null
         ]
       },
+      "/Users/nwz/capstone/entombed_api/spec/factories/users.rb": {
+        "lines": [
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          null,
+          null
+        ]
+      },
       "/Users/nwz/capstone/entombed_api/config/routes.rb": {
         "lines": [
           1,
+          1,
+          1,
+          1,
+          1,
+          null,
           null,
           null
         ]
@@ -228,8 +247,23 @@
           1,
           null
         ]
+      },
+      "/Users/nwz/capstone/entombed_api/app/controllers/api/v1/user_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/nwz/capstone/entombed_api/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
       }
     },
-    "timestamp": 1630012572
+    "timestamp": 1630023036
   }
 }
