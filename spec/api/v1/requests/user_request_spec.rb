@@ -45,5 +45,18 @@ RSpec.describe 'User Requests' do
 
       expect(birth).to be < death
     end
+
+
+    it 'includes dependent executors'
+
+    it 'includes dependent photos'
+
+    it 'includes dependent videos'
+
+    it 'raises error for non-existent user' do
+      expect {
+        get '/api/v1/user/1'
+      }.to raise_error(ActiveRecord::RecordNotFound)
+    end
   end
 end
