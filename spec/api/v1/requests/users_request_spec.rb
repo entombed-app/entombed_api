@@ -112,5 +112,82 @@ RSpec.describe 'Users Requests' do
       expect{created_user.foo}.to raise_error(NameError)
       expect{created_user.baz}.to raise_error(NameError)
     end
+
+    it 'does not create without an email' do
+      user_details = {
+        date_of_birth: '2001/02/03',
+        name: 'Jane Doe',
+        obituary: 'Tedious and brief',
+        password: 'password',
+        password_confirmation: 'password',
+        profile_picture: 'www.img-example.com'
+      }
+      headers = {"CONTENT_TYPE"  => 'application/json'}
+      post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
+
+      expect(response.status).to eq 400
+      error_message = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error_message).to eq({ error: 'Missing or incorrect user params', status: 400 })
+    end
+
+    it 'does not create without a name' do
+      user_details = {
+        email: 'ex@ample.com',
+        date_of_birth: '2001/02/03',
+        obituary: 'Tedious and brief',
+        password: 'password',
+        password_confirmation: 'password',
+        profile_picture: 'www.img-example.com'
+      }
+      headers = {"CONTENT_TYPE"  => 'application/json'}
+      post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
+
+      expect(response.status).to eq 400
+      error_message = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error_message).to eq({ error: 'Missing or incorrect user params', status: 400 })
+    end
+
+    it 'does not create without date of birth' do
+      user_details = {
+        email: 'ex@ample.com',
+        name: 'Jane Doe',
+        obituary: 'Tedious and brief',
+        password: 'password',
+        password_confirmation: 'password',
+        profile_picture: 'www.img-example.com'
+      }
+      headers = {"CONTENT_TYPE"  => 'application/json'}
+      post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
+
+      expect(response.status).to eq 400
+      error_message = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error_message).to eq({ error: 'Missing or incorrect user params', status: 400 })
+    end
+
+    it 'does create without obituary' do
+      user_details = {
+        email: 'ex@ample.com',
+        date_of_birth: '2001/02/03',
+        name: 'Jane Doe',
+        password: 'password',
+        password_confirmation: 'password',
+        profile_picture: 'www.img-example.com'
+      }
+      headers = {"CONTENT_TYPE"  => 'application/json'}
+      post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
+      created_user = User.last
+
+      expect(response.status).to eq 201
+      expect(created_user.email).to eq 'ex@ample.com'
+      expect(created_user.date_of_birth.to_s).to eq '2001-02-03'
+      expect(created_user.name).to eq 'Jane Doe'
+      expect(created_user.obituary).to eq nil
+      expect(created_user.password).to eq nil
+      expect(created_user.password_digest).is_a? String
+      expect(created_user.profile_picture).to eq 'www.img-example.com'
+    end
   end
 end
