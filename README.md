@@ -1,24 +1,42 @@
-# README
+# Elegy-Api [![entombed-app](https://circleci.com/gh/entombed-app/entombed_api.svg?style=svg)]
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Our Devs
+Back-End:
 
-Things you may want to cover:
+* Jermaine Braumuller [linkedin](https://www.linkedin.com/in/j-braum) [github](https://github.com/Jaybraum/)
+* Noah Zinter [linkedin](https://www.linkedin.com/in/noahzinter) [github](https://github.com/noahzinter/)
 
-* Ruby version
 
-* System dependencies
+Front-End:
 
-* Configuration
+* Taylor Galloway [linkedin](https://www.linkedin.com/in/taylor-galloway) [github](https://github.com/tylrs/)
 
-* Database creation
+* Ashley O'Brien [linkedin](https://www.linkedin.com/in/ashley-o-brien-30456a51) [github](https://github.com/AshleyOh-bit/)
 
-* Database initialization
+---
 
-* How to run the test suite
+# Description
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+---
 
-* ...
+# Endpoints
+
+### Get User 
+``` GET  /api/v1/user/:id ```
+
+Example JSON response: 
+
+```
+{example}
+```
+
+### Create User
+``` POST /api/v1/users ```
+
+Example JSON response: 
+
+```
+{example}
+```
+
