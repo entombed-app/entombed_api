@@ -8,4 +8,4 @@
 
 User.destroy_all
 
-User.create!(email: 'ex@ample.com', name: 'Elder Bobby', date_of_birth: '99/01/02', obituary: 'Tedious and brief', password: 'password', profile_picture: 'https://http.cat/201')
+User.create!(email: 'ex@ample.com', name: 'Elder Bobby', date_of_birth: '1999/01/02', obituary: 'Tedious and brief', password: 'password', profile_picture: 'https://http.cat/201')
