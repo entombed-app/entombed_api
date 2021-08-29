@@ -9,7 +9,6 @@ RSpec.describe 'Users Requests' do
         name: 'Jane Doe',
         obituary: 'Tedious and brief',
         password: 'password',
-        password_confirmation: 'password',
         profile_picture: 'www.img-example.com'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
@@ -33,7 +32,6 @@ RSpec.describe 'Users Requests' do
         name: 'Jane Doe',
         obituary: 'Tedious and brief',
         password: 'password',
-        password_confirmation: 'password',
         profile_picture: 'www.img-example.com'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
@@ -64,25 +62,6 @@ RSpec.describe 'Users Requests' do
       expect(serialized_user[:data][:attributes][:obituary]).is_a? String
       expect(serialized_user[:data][:attributes]).to have_key(:etd)
       expect(serialized_user[:data][:attributes][:etd].to_date).is_a? Date
-    end
-
-    it 'does not create with mismatched password and confirmation' do
-      user_details = {
-        email: 'ex@ample.com',
-        date_of_birth: '2001/02/03',
-        name: 'Jane Doe',
-        obituary: 'Tedious and brief',
-        password: 'password',
-        password_confirmation: 'notthepassword',
-        profile_picture: 'www.img-example.com'
-      }
-      headers = {"CONTENT_TYPE"  => 'application/json'}
-      post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
-
-      expect(response.status).to eq 401
-      error_message = JSON.parse(response.body, symbolize_names: true)
-
-      expect(error_message).to eq({ error: 'password and confirmation must match', status: 401 })
     end
 
     it 'ignores extra data' do
@@ -119,7 +98,6 @@ RSpec.describe 'Users Requests' do
         name: 'Jane Doe',
         obituary: 'Tedious and brief',
         password: 'password',
-        password_confirmation: 'password',
         profile_picture: 'www.img-example.com'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
@@ -137,7 +115,6 @@ RSpec.describe 'Users Requests' do
         date_of_birth: '2001/02/03',
         obituary: 'Tedious and brief',
         password: 'password',
-        password_confirmation: 'password',
         profile_picture: 'www.img-example.com'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
@@ -155,7 +132,6 @@ RSpec.describe 'Users Requests' do
         name: 'Jane Doe',
         obituary: 'Tedious and brief',
         password: 'password',
-        password_confirmation: 'password',
         profile_picture: 'www.img-example.com'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
@@ -173,7 +149,6 @@ RSpec.describe 'Users Requests' do
         date_of_birth: '2001/02/03',
         name: 'Jane Doe',
         password: 'password',
-        password_confirmation: 'password',
         profile_picture: 'www.img-example.com'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
@@ -197,7 +172,6 @@ RSpec.describe 'Users Requests' do
         name: 'Jane Doe',
         obituary: 'Tedious and brief',
         password: 'password',
-        password_confirmation: 'password'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
       post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
