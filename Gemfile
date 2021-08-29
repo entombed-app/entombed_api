@@ -11,6 +11,7 @@ gem 'figaro'
 gem 'faraday'
 gem 'jsonapi-serializer'
 gem 'bcrypt'
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   gem 'pry'
