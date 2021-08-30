@@ -37,7 +37,6 @@ RSpec.describe 'Users Requests' do
       serialized_user = JSON.parse(response.body, symbolize_names: true)
 
       expect(serialized_user).is_a? Hash
-      #binding.pry
       expect(serialized_user).to have_key(:data)
       expect(serialized_user[:data]).is_a? Hash
       expect(serialized_user[:data]).to have_key(:id)
