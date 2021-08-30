@@ -9,7 +9,6 @@ RSpec.describe 'Users Requests' do
         name: 'Jane Doe',
         obituary: 'Tedious and brief',
         password: 'password',
-        profile_picture: 'www.img-example.com'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
       post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
@@ -22,7 +21,6 @@ RSpec.describe 'Users Requests' do
       expect(created_user.obituary).to eq 'Tedious and brief'
       expect(created_user.password).to eq nil
       expect(created_user.password_digest).is_a? String
-      expect(created_user.profile_picture).to eq 'www.img-example.com'
     end
 
     it 'returns serialized user upon creation' do
@@ -32,7 +30,6 @@ RSpec.describe 'Users Requests' do
         name: 'Jane Doe',
         obituary: 'Tedious and brief',
         password: 'password',
-        profile_picture: 'www.img-example.com'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
       post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
@@ -56,8 +53,6 @@ RSpec.describe 'Users Requests' do
       expect(serialized_user[:data][:attributes][:name]).is_a? String
       expect(serialized_user[:data][:attributes]).to have_key(:date_of_birth)
       expect(serialized_user[:data][:attributes][:date_of_birth].to_date).is_a? Date
-      expect(serialized_user[:data][:attributes]).to have_key(:profile_picture)
-      expect(serialized_user[:data][:attributes][:profile_picture]).is_a? String
       expect(serialized_user[:data][:attributes]).to have_key(:obituary)
       expect(serialized_user[:data][:attributes][:obituary]).is_a? String
       expect(serialized_user[:data][:attributes]).to have_key(:etd)
@@ -72,7 +67,6 @@ RSpec.describe 'Users Requests' do
         obituary: 'Tedious and brief',
         password: 'password',
         password_confirmation: 'password',
-        profile_picture: 'www.img-example.com',
         foo: 'bar',
         baz: 'boop'
       }
@@ -87,7 +81,6 @@ RSpec.describe 'Users Requests' do
       expect(created_user.obituary).to eq 'Tedious and brief'
       expect(created_user.password).to eq nil
       expect(created_user.password_digest).is_a? String
-      expect(created_user.profile_picture).to eq 'www.img-example.com'
       expect{created_user.foo}.to raise_error(NameError)
       expect{created_user.baz}.to raise_error(NameError)
     end
@@ -98,7 +91,6 @@ RSpec.describe 'Users Requests' do
         name: 'Jane Doe',
         obituary: 'Tedious and brief',
         password: 'password',
-        profile_picture: 'www.img-example.com'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
       post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
@@ -115,7 +107,6 @@ RSpec.describe 'Users Requests' do
         date_of_birth: '2001/02/03',
         obituary: 'Tedious and brief',
         password: 'password',
-        profile_picture: 'www.img-example.com'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
       post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
@@ -132,7 +123,6 @@ RSpec.describe 'Users Requests' do
         name: 'Jane Doe',
         obituary: 'Tedious and brief',
         password: 'password',
-        profile_picture: 'www.img-example.com'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
       post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
@@ -149,7 +139,6 @@ RSpec.describe 'Users Requests' do
         date_of_birth: '2001/02/03',
         name: 'Jane Doe',
         password: 'password',
-        profile_picture: 'www.img-example.com'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
       post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
@@ -162,7 +151,6 @@ RSpec.describe 'Users Requests' do
       expect(created_user.obituary).to eq nil
       expect(created_user.password).to eq nil
       expect(created_user.password_digest).is_a? String
-      expect(created_user.profile_picture).to eq 'www.img-example.com'
     end
 
     it 'does create without profile pic' do
@@ -184,7 +172,6 @@ RSpec.describe 'Users Requests' do
       expect(created_user.obituary).to eq 'Tedious and brief'
       expect(created_user.password).to eq nil
       expect(created_user.password_digest).is_a? String
-      expect(created_user.profile_picture).to eq nil
     end
   end
 end
