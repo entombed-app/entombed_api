@@ -8,7 +8,7 @@ RSpec.describe 'Users Requests' do
         date_of_birth: '2001/02/03',
         name: 'Jane Doe',
         obituary: 'Tedious and brief',
-        password: 'password',
+        password: 'password123'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
       post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
@@ -29,7 +29,7 @@ RSpec.describe 'Users Requests' do
         date_of_birth: '2001/02/03',
         name: 'Jane Doe',
         obituary: 'Tedious and brief',
-        password: 'password',
+        password: 'password'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
       post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
@@ -37,6 +37,7 @@ RSpec.describe 'Users Requests' do
       serialized_user = JSON.parse(response.body, symbolize_names: true)
 
       expect(serialized_user).is_a? Hash
+      #binding.pry
       expect(serialized_user).to have_key(:data)
       expect(serialized_user[:data]).is_a? Hash
       expect(serialized_user[:data]).to have_key(:id)
@@ -90,7 +91,7 @@ RSpec.describe 'Users Requests' do
         date_of_birth: '2001/02/03',
         name: 'Jane Doe',
         obituary: 'Tedious and brief',
-        password: 'password',
+        password: 'password'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
       post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
@@ -106,7 +107,7 @@ RSpec.describe 'Users Requests' do
         email: 'ex@ample.com',
         date_of_birth: '2001/02/03',
         obituary: 'Tedious and brief',
-        password: 'password',
+        password: 'password'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
       post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
@@ -122,7 +123,7 @@ RSpec.describe 'Users Requests' do
         email: 'ex@ample.com',
         name: 'Jane Doe',
         obituary: 'Tedious and brief',
-        password: 'password',
+        password: 'password'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
       post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
@@ -138,7 +139,7 @@ RSpec.describe 'Users Requests' do
         email: 'ex@ample.com',
         date_of_birth: '2001/02/03',
         name: 'Jane Doe',
-        password: 'password',
+        password: 'password'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
       post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
@@ -159,7 +160,7 @@ RSpec.describe 'Users Requests' do
         date_of_birth: '2001/02/03',
         name: 'Jane Doe',
         obituary: 'Tedious and brief',
-        password: 'password',
+        password: 'password'
       }
       headers = {"CONTENT_TYPE"  => 'application/json'}
       post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
