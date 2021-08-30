@@ -10,8 +10,8 @@ User.destroy_all
 
 user_1 = User.create!(email: 'ex@ample.com', name: 'Elder Bobby', date_of_birth: '1999/01/02', obituary: 'Tedious and brief', password: 'password')
 
-user_1.avatar.attach(
-    io: File.open('./public/avatars/profile-picture.png'),
+user_1.profile_picture.attach(
+    io: File.open('./public/profile_pictures/profile-picture.png'),
     filename: 'profile-picture.png',
     content_type: 'application/png'
 )
