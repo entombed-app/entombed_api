@@ -15,7 +15,6 @@ jobs:
           POSTGRES_USER: circleci
           POSTGRES_DB: entombed_api_test
           POSTGRES_HOST_AUTH_METHOD: trust
-    executor: ruby/default
     steps:
       - checkout
       - run:
@@ -43,7 +42,7 @@ jobs:
 workflows:
   heroku_deploy:
     jobs:
-      - build:
+      - build
       - heroku/deploy-via-git:
           app-name: elegy-backend
           requires:
