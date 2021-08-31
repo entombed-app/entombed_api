@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
   def create
     user = User.new(user_params)
-    # user.profile_picture.attach(user_params[:profile_picture])
+    user.profile_picture.attach(user_params[:profile_picture])
     if user.save
       render json: UserSerializer.new(user).serializable_hash.to_json, status: 201
     else
