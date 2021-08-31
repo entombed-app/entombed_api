@@ -15,31 +15,21 @@ jobs:
           POSTGRES_USER: circleci
           POSTGRES_DB: entombed_api_test
           POSTGRES_HOST_AUTH_METHOD: trust
-      #   auth: 
-      #     username: nwzinter
-      #     password: ENV['DOCKERHUB_PASSWORD']
-      #   environment:
-      #     PG_HOST: localhost
-      # - image: circleci/postgres:13.2-alpine
-      #   auth:
-      #     username: nwzinter
-      #     password: ENV['DOCKERHUB_PASSWORD']
-
     executor: ruby/default
     steps:
       - checkout
       - run:
           name: Which bundler?
           command: gem install bundler -v 2.2.26
-      # - run:
-      #     name: Bundle
-      #     command: bundle install
-      # - run:
-      #     name: DB Create
-      #     command: rails db:create
-      # - run:
-      #     name: DB Migrate
-      #     command: rails db:migrate
-      # - run:
-      #     name: Test suite
-      #     command: bundle exec rspec
+      - run:
+          name: Bundle
+          command: bundle install
+      - run:
+          name: DB Create
+          command: rails db:create
+      - run:
+          name: DB Migrate
+          command: rails db:migrate
+      - run:
+          name: Test suite
+          command: bundle exec rspec
