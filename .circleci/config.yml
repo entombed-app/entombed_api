@@ -40,6 +40,17 @@ jobs:
           environment:
             DATABASE_URL: "postgres://circleci@localhost:5432/entombed_api_test"
 
+workflows:
+  heroku_deploy:
+    jobs:
+      - build
+      - heroku/deploy-via-git:
+          app-name: elegy-backend
+          requires:
+            - build
+          filters:
+            branches:
+              only: main
 
       # - run:
       #     name: Test suite
