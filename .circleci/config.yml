@@ -30,6 +30,6 @@ jobs:
       - run:
           name: DB Migrate
           command: bundle exec rake db:migrate
-      - run:
-          name: Test suite
-          command: bundle exec rspec
+      # - run:
+      #     name: Test suite
+      #     command: bundle exec rspec
