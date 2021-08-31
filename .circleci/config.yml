@@ -13,8 +13,9 @@ jobs:
           name: Which bundler?
           command: gem install bundler -v 2.2.26
       - run:
-          name: Ruby install
-          command: gem install ruby -v 2.7.2
+          name: Set Ruby Version
+          command: echo "ruby-2.7.2" > ~/.ruby-version
+
       - run:
           name: Bundle
           command: bundle install
