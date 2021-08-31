@@ -34,6 +34,9 @@ jobs:
             rails db:migrate RAILS_ENV=test
           environment:
             DATABASE_URL: "postgres://circleci@localhost:5432/entombed_api_test"
+      - run:
+          name: Run specs
+          command: bundle exec rspec
 
 
       # - run:
