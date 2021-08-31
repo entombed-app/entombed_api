@@ -5,7 +5,18 @@ orbs:
 jobs:
   build:
     docker:
+      - working_directory: ~/entombed_api
       - image: cimg/ruby:2.7.2
+        environment:
+          PG_HOST: localhost
+          PG_USER: cicleci
+      - image: postgres:13.2
+        environment:
+          POSTGRES_USER: circleci
+          POSTGRES_DB: entombed_api_test
+          POSTGRES_HOST_AUTH_METHOD: trust
+    steps:
+      - checkout
       #   auth: 
       #     username: nwzinter
       #     password: ENV['DOCKERHUB_PASSWORD']
