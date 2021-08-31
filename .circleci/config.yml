@@ -43,7 +43,7 @@ jobs:
 workflows:
   heroku_deploy:
     jobs:
-      - build
+      - build:
       - heroku/deploy-via-git:
           app-name: elegy-backend
           requires:
