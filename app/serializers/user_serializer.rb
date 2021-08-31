@@ -1,6 +1,6 @@
 class UserSerializer
   include JSONAPI::Serializer
-  attributes :email, :name, :date_of_birth, :profile_picture, :obituary
+  attributes :email, :name, :date_of_birth, :obituary, :profile_picture
 
   attribute :etd do |object|
     lived_days = (Date.today - object.date_of_birth).to_i
@@ -8,7 +8,7 @@ class UserSerializer
     max_date = ( Date.today + remaining )
   end
 
-  def profile_picture
-    rails_blob_path(object.profile_picture, only_path: true) if object.profile_picture.attached?
+  attribute :profile_picture do |object| 
+    Rails.application.routes.url_helpers.rails_blob_url(object.profile_picture) if object.profile_picture.attached?
   end
 end
