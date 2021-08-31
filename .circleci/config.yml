@@ -6,16 +6,9 @@ jobs:
   build:
     docker:
       - image: cimg/ruby:2.7.2
-        auth: 
-          username: nwzinter
-          password: ENV['DOCKERHUB_PASSWORD']
         environment:
           PG_HOST: localhost
       - image: circleci/postgres:13.2-alpine
-        auth:
-          username: nwzinter
-          password: ENV['DOCKERHUB_PASSWORD']
-
     executor: ruby/default
     steps:
       - checkout
