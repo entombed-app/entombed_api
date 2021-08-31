@@ -31,7 +31,7 @@ jobs:
         POSTGRES_DB: entombed_api_test
         POSTGRES_HOST_AUTH_METHOD: trust
     steps:
-      -checkout
+      - checkout
       - run:
           name: Which bundler?
           command: gem install bundler -v 2.2.26
