@@ -178,11 +178,11 @@ RSpec.describe 'Users Requests' do
   describe 'show' do
     it 'displays serialized info for one user' do
       user = create(:user)
-      # user.profile_picture.attach(
-      #   io: File.open('./public/profile_pictures/profile-picture.png'),
-      #   filename: 'profile-picture.png',
-      #   content_type: 'application/png'
-      # )
+      user.profile_picture.attach(
+        io: File.open('./public/profile_pictures/profile-picture.png'),
+        filename: 'profile-picture.png',
+        content_type: 'application/png'
+      )
       get "/api/v1/users/#{user.id}"
 
       expect(response.status).to eq 200
@@ -216,11 +216,11 @@ RSpec.describe 'Users Requests' do
 
     it 'has an etd which is later than birth date' do
       user = create(:user)
-      # user.profile_picture.attach(
-      #   io: File.open('./public/profile_pictures/profile-picture.png'),
-      #   filename: 'profile-picture.png',
-      #   content_type: 'application/png'
-      # )
+      user.profile_picture.attach(
+        io: File.open('./public/profile_pictures/profile-picture.png'),
+        filename: 'profile-picture.png',
+        content_type: 'application/png'
+      )
       get "/api/v1/users/#{user.id}"
       expect(response.status).to eq 200
       serialized_user = JSON.parse(response.body, symbolize_names: true)
