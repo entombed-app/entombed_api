@@ -4,8 +4,8 @@ orbs:
 
 jobs:
   build:
+    working_directory: ~/entombed_api
     docker:
-      - working_directory: ~/entombed_api
       - image: cimg/ruby:2.7.2
         environment:
           PG_HOST: localhost
