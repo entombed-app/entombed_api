@@ -18,6 +18,20 @@ jobs:
     executor: ruby/default
     steps:
       - checkout
+
+  test:
+    docker:
+    - image: cimg/ruby:2.7.2
+      environment:
+        PG_HOST: localhost
+        PG_USER: cicleci
+    - image: postgres:13.2
+      environment:
+        POSTGRES_USER: circleci
+        POSTGRES_DB: entombed_api_test
+        POSTGRES_HOST_AUTH_METHOD: trust
+    steps:
+      -checkout
       - run:
           name: Which bundler?
           command: gem install bundler -v 2.2.26
@@ -25,11 +39,17 @@ jobs:
           name: Bundle
           command: bundle install
       - run:
-          name: DB Create
-          command: bundle exec rake db:create
+          name: Wait for DB
+          command: dockerize -wait tcp://127.0.0.1:5432 -timeout 1m
       - run:
-          name: DB Migrate
-          command: bundle exec rake db:migrate
+          name: DB Setup
+          command: |
+            rails db:create RAILS_ENV=test
+            rails db:migrate RAILS_ENV=test
+          environment:
+            DATABASE_URL: "postgres://circleci@localhost:5432/entombed_api_test"
+
+
       # - run:
       #     name: Test suite
       #     command: bundle exec rspec
