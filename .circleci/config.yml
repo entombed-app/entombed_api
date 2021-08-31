@@ -18,19 +18,6 @@ jobs:
     executor: ruby/default
     steps:
       - checkout
-
-  test:
-    docker:
-    - image: cimg/ruby:2.7.2
-      environment:
-        PG_HOST: localhost
-        PG_USER: cicleci
-    - image: postgres:13.2
-      environment:
-        POSTGRES_USER: circleci
-        POSTGRES_DB: entombed_api_test
-        POSTGRES_HOST_AUTH_METHOD: trust
-    steps:
       - run:
           name: Which bundler?
           command: gem install bundler -v 2.2.26
