@@ -5,7 +5,6 @@ orbs:
 jobs:
   build:
     docker:
-<<<<<<< HEAD
       - working_directory: ~/entombed_api
       - image: cimg/ruby:2.7.2
         environment:
@@ -18,9 +17,6 @@ jobs:
           POSTGRES_HOST_AUTH_METHOD: trust
     steps:
       - checkout
-=======
-      - image: cimg/ruby:2.7.2
->>>>>>> 848b12e227856cf279cf124fd8270bf2ec98851a
       #   auth: 
       #     username: nwzinter
       #     password: ENV['DOCKERHUB_PASSWORD']
