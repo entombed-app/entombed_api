@@ -243,4 +243,35 @@ RSpec.describe 'Users Requests' do
       }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
+
+  describe 'update' do
+    it 'updates a user' do
+      user_details = {
+        email: 'ex@ample.com',
+        date_of_birth: '2001/02/03',
+        name: 'Jane Doe',
+        password: 'password'
+      }
+      headers = {"CONTENT_TYPE"  => 'application/json'}
+      post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
+      created_user = User.last
+      expect(response.status).to eq 201
+      expect(created_user.email).to eq 'ex@ample.com'
+      expect(created_user.date_of_birth.to_s).to eq '2001-02-03'
+      expect(created_user.name).to eq 'Jane Doe'
+      expect(created_user.obituary).to eq nil
+      expect(created_user.password).to eq nil
+      expect(created_user.password_digest).is_a? String
+
+      updated_user_details = {
+        obituary: 'tedious and brief'
+      }
+      headers = {"CONTENT_TYPE"  => 'application/json'}
+      patch "/api/v1/users/#{created_user.id}", headers: headers, params: JSON.generate(updated_user_details)
+
+      expect(response.status).to eq 200
+      updated_user = User.find(created_user.id)
+      binding.pry
+    end
+  end
 end
