@@ -13,7 +13,8 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    
+    user = User.update(params[:id], user_params)
+    render json: UserSerializer.new(user), status: 200
   end
 
   def show
