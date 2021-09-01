@@ -271,7 +271,78 @@ RSpec.describe 'Users Requests' do
 
       expect(response.status).to eq 200
       updated_user = User.find(created_user.id)
-      binding.pry
+      expect(updated_user.email).to eq 'ex@ample.com'
+      expect(updated_user.date_of_birth.to_s).to eq '2001-02-03'
+      expect(updated_user.name).to eq 'Jane Doe'
+      expect(updated_user.obituary).to eq 'tedious and brief'
+    end
+
+    it 'can update an obituary to nil' do
+      user_details = {
+        email: 'ex@ample.com',
+        date_of_birth: '2001/02/03',
+        name: 'Jane Doe',
+        obituary: 'Tedious and brief',
+        password: 'password123'
+      }
+      headers = {"CONTENT_TYPE"  => 'application/json'}
+      post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
+      created_user = User.last
+      expect(response.status).to eq 201
+      expect(created_user.email).to eq 'ex@ample.com'
+      expect(created_user.date_of_birth.to_s).to eq '2001-02-03'
+      expect(created_user.name).to eq 'Jane Doe'
+      expect(created_user.obituary).to eq 'Tedious and brief'
+      expect(created_user.password).to eq nil
+      expect(created_user.password_digest).is_a? String
+
+      updated_user_details = {
+        obituary: nil
+      }
+      headers = {"CONTENT_TYPE"  => 'application/json'}
+      patch "/api/v1/users/#{created_user.id}", headers: headers, params: JSON.generate(updated_user_details)
+
+      updated_user = User.find(created_user.id)
+      expect(response.status).to eq 200
+      expect(updated_user.email).to eq 'ex@ample.com'
+      expect(updated_user.date_of_birth.to_s).to eq '2001-02-03'
+      expect(updated_user.name).to eq 'Jane Doe'
+      expect(updated_user.obituary).to eq nil
+    end
+
+    it 'can update all attributes' do
+      user_details = {
+        email: 'ex@ample.com',
+        date_of_birth: '2001/02/03',
+        name: 'Jane Doe',
+        obituary: 'Tedious and brief',
+        password: 'password123'
+      }
+      headers = {"CONTENT_TYPE"  => 'application/json'}
+      post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
+      created_user = User.last
+      expect(response.status).to eq 201
+      expect(created_user.email).to eq 'ex@ample.com'
+      expect(created_user.date_of_birth.to_s).to eq '2001-02-03'
+      expect(created_user.name).to eq 'Jane Doe'
+      expect(created_user.obituary).to eq 'Tedious and brief'
+
+      updated_user_details = {
+        email: 'new@mail.com',
+        date_of_birth: '2004/05/06',
+        name: 'Jim Does',
+        obituary: 'Exciting and Slow',
+        password: 'password123456'
+      }
+      patch "/api/v1/users/#{created_user.id}", headers: headers, params: JSON.generate(updated_user_details)
+
+      updated_user = User.find(created_user.id)
+      expect(response.status).to eq 200
+      expect(updated_user.email).to eq 'new@mail.com'
+      expect(updated_user.date_of_birth.to_s).to eq '2004-05-06'
+      expect(updated_user.name).to eq 'Jim Does'
+      expect(updated_user.obituary).to eq 'Exciting and Slow'
+      expect(created_user.password_digest).not_to eq(updated_user.password_digest)
     end
   end
 end
