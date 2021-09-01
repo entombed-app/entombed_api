@@ -57,6 +57,23 @@ RSpec.describe 'Executors Requests' do
       headers = {"CONTENT_TYPE"  => 'application/json'}
       post "/api/v1/users/#{user_id}/executors", headers: headers, params: JSON.generate(executor_details)
       expect(response.status).to eq 400
+      error_message = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error_message[:error]).to eq 'Missing or Incorrect Executor Params'
+    end
+
+    it 'does not create without name' do
+      user_id = create(:user).id
+      executor_details = {
+        email: 'ex@ample.com',
+        phone: '555-867-5309'
+      }
+      headers = {"CONTENT_TYPE"  => 'application/json'}
+      post "/api/v1/users/#{user_id}/executors", headers: headers, params: JSON.generate(executor_details)
+      expect(response.status).to eq 400
+      error_message = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error_message[:error]).to eq 'Missing or Incorrect Executor Params'
     end
   end
 end
