@@ -12,9 +12,14 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def show
+    user = User.find(params[:id])
+    # profile_picture = rails_blob_path(user.profile_picture)
+    render json: UserSerializer.new(user)
+  end
+
   def profile_picture
     user = User.find_by(id: params[:id])
-  
     if user&.profile_picture&.attached?
       redirect_to rails_blob_url(user.profile_picture)
     else

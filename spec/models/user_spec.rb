@@ -8,4 +8,8 @@ RSpec.describe User do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:date_of_birth) }
   end
+
+  describe 'relationships' do
+    it { should have_many(:executors).dependent(:destroy) }
+  end
 end

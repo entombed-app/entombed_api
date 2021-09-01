@@ -1,14 +1,56 @@
 version: 2.1
 orbs:
-  ruby: circleci/ruby@0.1.2 
-
+  ruby: circleci/ruby@0.1.2
+  heroku: circleci/heroku@1.2.6
 jobs:
   build:
+    working_directory: ~/entombed_api
     docker:
-      - image: circleci/ruby:2.6.3-stretch-node
-    executor: ruby/default
+      - image: cimg/ruby:2.7.2
+        environment:
+          PG_HOST: localhost
+          PG_USER: cicleci
+      - image: postgres:13.2
+        environment:
+          POSTGRES_USER: circleci
+          POSTGRES_DB: entombed_api_test
+          POSTGRES_HOST_AUTH_METHOD: trust
     steps:
       - checkout
       - run:
           name: Which bundler?
           command: gem install bundler -v 2.2.26
+      - run:
+          name: Bundle
+          command: bundle install
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://127.0.0.1:5432 -timeout 1m
+      - run:
+          name: DB Setup
+          command: |
+            rails db:create RAILS_ENV=test
+            rails db:migrate RAILS_ENV=test
+          environment:
+            DATABASE_URL: "postgres://circleci@localhost:5432/entombed_api_test"
+      - run:
+          name: Run specs
+          command: bundle exec rspec
+          environment:
+            DATABASE_URL: "postgres://circleci@localhost:5432/entombed_api_test"
+
+workflows:
+  heroku_deploy:
+    jobs:
+      - build
+      - heroku/deploy-via-git:
+          app-name: elegy-backend
+          requires:
+            - build
+          filters:
+            branches:
+              only: main
+
+      # - run:
+      #     name: Test suite
+      #     command: bundle exec rspec
