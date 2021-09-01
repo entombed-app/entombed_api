@@ -14,7 +14,13 @@ class Api::V1::UsersController < ApplicationController
 
   def update
     user = User.update(params[:id], user_params)
-    render json: UserSerializer.new(user), status: 200
+    if user.valid?
+      render json: UserSerializer.new(user), status: 200
+    else
+      render json: {
+        error: 'User name, email, birthdate cannot be empty'
+      }, status: 400
+    end
   end
 
   def show
