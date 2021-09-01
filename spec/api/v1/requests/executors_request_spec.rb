@@ -47,5 +47,16 @@ RSpec.describe 'Executors Requests' do
       expect(exec[:data][:attributes]).to have_key(:phone)
       expect(exec[:data][:attributes][:phone]).to eq '555-867-5309'
     end
+
+    it 'does not create without email' do
+      user_id = create(:user).id
+      executor_details = {
+        name: 'Younger Bobby',
+        phone: '555-867-5309'
+      }
+      headers = {"CONTENT_TYPE"  => 'application/json'}
+      post "/api/v1/users/#{user_id}/executors", headers: headers, params: JSON.generate(executor_details)
+      expect(response.status).to eq 400
+    end
   end
 end
