@@ -75,5 +75,29 @@ RSpec.describe 'Executors Requests' do
 
       expect(error_message[:error]).to eq 'Missing or Incorrect Executor Params'
     end
+
+    it 'ignores extra attributes' do
+      user_id = create(:user).id
+      executor_details = {
+        email: 'ex@ample.com',
+        name: 'Younger Bobby',
+        phone: '555-867-5309',
+        password: 'password',
+        banana: 'cabana',
+        foo: 'bar'
+      }
+      headers = {"CONTENT_TYPE"  => 'application/json'}
+      post "/api/v1/users/#{user_id}/executors", headers: headers, params: JSON.generate(executor_details)
+      exec = Executor.last
+
+      expect(exec).is_a? Executor
+      expect(exec.email).to eq 'ex@ample.com'
+      expect(exec.name).to eq 'Younger Bobby'
+      expect(exec.phone).to eq '555-867-5309'
+      expect(exec.user_id).to eq user_id
+      expect{exec.password}.to raise_error(NameError)
+      expect{exec.banana}.to raise_error(NameError)
+      expect{exec.foo}.to raise_error(NameError)
+    end
   end
 end
