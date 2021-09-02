@@ -100,4 +100,39 @@ RSpec.describe 'Executors Requests' do
       expect{exec.foo}.to raise_error(NameError)
     end
   end
+
+  describe 'update' do
+    it 'can update an executor' do
+      user_id = create(:user).id
+      executor_details = {
+        email: 'ex@ample.com',
+        name: 'Younger Bobby',
+        phone: '555-867-5309'
+      }
+      headers = {"CONTENT_TYPE"  => 'application/json'}
+      post "/api/v1/users/#{user_id}/executors", headers: headers, params: JSON.generate(executor_details)
+
+      exec = Executor.last
+      expect(exec).is_a? Executor
+      expect(exec.email).to eq 'ex@ample.com'
+      expect(exec.name).to eq 'Younger Bobby'
+      expect(exec.phone).to eq '555-867-5309'
+      expect(exec.user_id).to eq user_id
+
+      updated_executor_details = {
+        email: 'new@mail.com',
+        name: 'Medium Bobby',
+        phone: '111-222-3333'
+      }
+      patch "/api/v1/users/#{user_id}/executors/#{exec.id}", headers: headers, params: JSON.generate(updated_executor_details)
+
+      edited_exec = Executor.find(exec.id)
+
+      expect(edited_exec).is_a? Executor
+      expect(edited_exec.email).to eq 'new@mail.com'
+      expect(edited_exec.name).to eq 'Medium Bobby'
+      expect(edited_exec.phone).to eq '111-222-3333'
+      expect(edited_exec.user_id).to eq user_id
+    end
+  end
 end
