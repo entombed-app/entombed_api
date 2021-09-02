@@ -11,6 +11,17 @@ class Api::V1::ExecutorsController < ApplicationController
     end
   end
 
+  def update
+    executor = Executor.update(params[:id], executor_params)
+    if executor.valid?
+      render json: ExecutorSerializer.new(executor), status: 200
+    else
+      render json: {
+        error: 'Executor name or email cannot be empty'
+      }, status: 400
+    end
+  end
+
   private
 
   def executor_params
