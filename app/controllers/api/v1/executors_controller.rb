@@ -22,6 +22,10 @@ class Api::V1::ExecutorsController < ApplicationController
     end
   end
 
+  def destroy
+    Executor.destroy(params[:id])
+  end
+
   private
 
   def executor_params

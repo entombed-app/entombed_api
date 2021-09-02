@@ -195,4 +195,23 @@ RSpec.describe 'Executors Requests' do
       expect(error[:error]).to eq 'Executor name or email cannot be empty'
     end
   end
+
+  describe 'delete' do
+    it 'deletes an executor' do
+      user_id = create(:user).id
+      executor_details = {
+        email: 'ex@ample.com',
+        name: 'Younger Bobby',
+        phone: '555-867-5309'
+      }
+      headers = {"CONTENT_TYPE"  => 'application/json'}
+      post "/api/v1/users/#{user_id}/executors", headers: headers, params: JSON.generate(executor_details)
+      exec = Executor.last
+
+      delete "/api/v1/users/#{user_id}/executors/#{exec.id}"
+      expect(response.status).to eq 204
+
+      expect{Executor.find(exec.id)}.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
 end
