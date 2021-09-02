@@ -1,4 +1,10 @@
 class Api::V1::ExecutorsController < ApplicationController
+  def index
+    user = User.find(params[:user_id])
+    executors = user.executors
+    render json: ExecutorSerializer.new(executors)
+  end
+
   def create
     user = User.find(params[:user_id])
     exec = user.executors.new(executor_params)

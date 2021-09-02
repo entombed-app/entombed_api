@@ -214,4 +214,55 @@ RSpec.describe 'Executors Requests' do
       expect{Executor.find(exec.id)}.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
+
+  describe 'index' do
+    it 'returns one executor' do
+      user_id = create(:user).id
+      executor_details = {
+        email: 'ex@ample.com',
+        name: 'Younger Bobby',
+        phone: '555-867-5309'
+      }
+      headers = {"CONTENT_TYPE"  => 'application/json'}
+      post "/api/v1/users/#{user_id}/executors", headers: headers, params: JSON.generate(executor_details)
+      exec = Executor.last
+
+      get "/api/v1/users/#{user_id}/executors"
+      expect(response.status).to eq 200
+
+      executors = JSON.parse(response.body, symbolize_names: true)
+
+      expect(executors).is_a? Hash
+      expect(executors).to have_key(:data)
+      expect(executors[:data]).is_a? Array
+      expect(executors[:data].length).to eq 1
+      expect(executors[:data][0]).is_a? Hash
+      expect(executors[:data][0]).to have_key(:id)
+      expect(executors[:data][0][:id]).is_a? String
+      expect(executors[:data][0]).to have_key(:type)
+      expect(executors[:data][0][:type]).to eq 'executor'
+      expect(executors[:data][0]).to have_key(:attributes)
+      expect(executors[:data][0][:attributes]).is_a? Hash
+      expect(executors[:data][0][:attributes]).to have_key(:email)
+      expect(executors[:data][0][:attributes][:email]).to eq 'ex@ample.com'
+      expect(executors[:data][0][:attributes]).to have_key(:name)
+      expect(executors[:data][0][:attributes][:name]).to eq 'Younger Bobby'
+      expect(executors[:data][0][:attributes]).to have_key(:phone)
+      expect(executors[:data][0][:attributes][:phone]).to eq '555-867-5309'
+    end
+
+    it 'returns an empty array if no executors' do
+      user_id = create(:user).id
+      get "/api/v1/users/#{user_id}/executors"
+      expect(response.status).to eq 200
+
+      empty = JSON.parse(response.body, symbolize_names: true)
+      expect(empty).is_a? Hash
+      expect(empty).to have_key(:data)
+      expect(empty[:data]).to eq([])
+      expect(empty).not_to have_key(:id)
+      expect(empty).not_to have_key(:type)
+      expect(empty).not_to have_key(:attributes)
+    end
+  end
 end
