@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include Rails.application.routes.url_helpers
   validates :email, presence: true, uniqueness: true
   validates :name, :date_of_birth, presence: true
 
@@ -7,4 +8,8 @@ class User < ApplicationRecord
   validates :profile_picture, content_type: [:png, :jpg, :jpeg]
 
   has_secure_password
+
+  def profile_picture_url
+    Rails.application.routes.url_helpers.url_for(profile_picture) if profile_picture.attached?
+  end
 end
