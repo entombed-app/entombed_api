@@ -206,8 +206,8 @@ RSpec.describe 'Users Requests' do
       expect(serialized_user[:data][:attributes][:name]).is_a? String
       expect(serialized_user[:data][:attributes]).to have_key(:date_of_birth)
       expect(serialized_user[:data][:attributes][:date_of_birth].to_date).is_a? Date
-      expect(serialized_user[:data][:attributes]).to have_key(:profile_picture)
-      expect(serialized_user[:data][:attributes][:profile_picture]).is_a? String
+      expect(serialized_user[:data][:attributes]).to have_key(:profile_picture_url)
+      expect(serialized_user[:data][:attributes][:profile_picture_url]).is_a? String
       expect(serialized_user[:data][:attributes]).to have_key(:obituary)
       expect(serialized_user[:data][:attributes][:obituary]).is_a? String
       expect(serialized_user[:data][:attributes]).to have_key(:etd)
