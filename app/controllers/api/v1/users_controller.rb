@@ -30,7 +30,7 @@ class Api::V1::UsersController < ApplicationController
 
   def profile_picture
     user = User.find(params[:user_id])
-    if params[:profile_picture].present?
+    if params[:profile_picture]
       user.profile_picture.purge
       user.profile_picture.attach(params[:profile_picture])
       render json: UserSerializer.new(user)
