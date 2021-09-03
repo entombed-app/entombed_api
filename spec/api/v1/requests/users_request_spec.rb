@@ -231,7 +231,20 @@ RSpec.describe 'Users Requests' do
     end
 
 
-    it 'includes dependent executors'
+    it 'includes dependent executors' do
+      user = create(:user)
+      user.executors.create!(name: 'younger bobby', email: 'bob@bee.com', phone: '888-999-1111')
+      get "/api/v1/users/#{user.id}"
+      expect(response.status).to eq 200
+      serialized_user = JSON.parse(response.body, symbolize_names: true)
+
+      expect(serialized_user[:data][:relationships]).is_a? Hash
+      expect(serialized_user[:data][:relationships][:executors]).is_a? Hash
+      expect(serialized_user[:data][:relationships][:executors][:data]).is_a? Array
+      expect(serialized_user[:data][:relationships][:executors][:data].first).to have_key(:id)
+      expect(serialized_user[:data][:relationships][:executors][:data].first).to have_key(:type)
+      expect(serialized_user[:data][:relationships][:executors][:data].first[:type]).to eq 'executor'
+    end
 
     it 'includes dependent photos'
 

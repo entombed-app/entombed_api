@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create, :show, :update] do
         patch '/profile_picture', to: 'users#profile_picture'
         get :profile_picture, on: :member
-        resources :executors, only: [:create, :update, :destroy]
+        resources :executors, only: [:create, :update, :destroy, :index]
       end 
     end
   end
