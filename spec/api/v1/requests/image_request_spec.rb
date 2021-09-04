@@ -81,5 +81,16 @@ RSpec.describe 'Image attachment requests' do
       expect(serialized_user[:data][:attributes][:images_urls][0]).is_a? String
       expect(serialized_user[:data][:attributes][:images_urls][1]).is_a? String
     end
+
+    it 'returns an error if no image attached' do
+      user = create(:user)
+      post "/api/v1/users/#{user.id}/images", params: {
+            image: 'nil'
+      }
+
+      expect(response.status).to eq 400
+      error = JSON.parse(response.body, symbolize_names: true)
+      expect(error[:error]).to eq 'No image file detected'
+    end
   end
 end
