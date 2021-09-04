@@ -151,7 +151,7 @@ RSpec.describe 'Users Requests' do
         {
             profile_picture: fixture_file_upload('profile2.png')
         }
-  
+
         expect(response.status).to eq 200
         serialized_user = JSON.parse(response.body, symbolize_names: true)
 
@@ -191,14 +191,14 @@ RSpec.describe 'Users Requests' do
           profile_picture: fixture_file_upload('profile.png')
        } 
         JSON.parse(response.body, symbolize_names: true)
-        
+
         created_user = User.last
 
         patch "/api/v1/users/#{created_user.id}/profile_picture", params: 
         {
             profile_picture: nil
         }
-  
+
         expect(response.status).to eq 400
       error = JSON.parse(response.body, symbolize_names: true)
 

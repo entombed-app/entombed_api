@@ -14,4 +14,12 @@ class User < ApplicationRecord
   def profile_picture_url
     Rails.application.routes.url_helpers.url_for(profile_picture) if profile_picture.attached?
   end
+
+  def images_urls
+    if images.attached?
+      images.map do |image|
+        Rails.application.routes.url_helpers.url_for(image)
+      end
+    end
+  end
 end
