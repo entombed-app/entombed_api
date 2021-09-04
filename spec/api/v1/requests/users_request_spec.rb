@@ -248,7 +248,7 @@ RSpec.describe 'Users Requests' do
 
     it 'includes dependent photos' do
       user = create(:user)
-      post "/api/v1/users/#{user.id}/attach_image", params: {
+      post "/api/v1/users/#{user.id}/images", params: {
             image: fixture_file_upload('profile2.png')
       }
 
