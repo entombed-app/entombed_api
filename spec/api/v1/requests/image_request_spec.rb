@@ -93,4 +93,8 @@ RSpec.describe 'Image attachment requests' do
       expect(error[:error]).to eq 'No image file detected'
     end
   end
+
+  describe 'delete' do
+    it 'can delete an image'
+  end
 end

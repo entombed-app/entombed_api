@@ -285,8 +285,6 @@ RSpec.describe 'Users Requests' do
 
     end
 
-
-
     it 'raises error for non-existent user' do
       expect {
         get '/api/v1/users/1'
