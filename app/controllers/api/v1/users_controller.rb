@@ -40,6 +40,10 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def attach_image
+    
+  end
+
   # def profile_picture
   #   user = User.find(params[:user_id])
   #   attach_picture(user)
