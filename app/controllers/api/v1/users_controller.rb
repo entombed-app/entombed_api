@@ -40,29 +40,9 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  # def profile_picture
-  #   user = User.find(params[:user_id])
-  #   attach_picture(user)
-  #   render json: UserSerializer.new(user)
-  # end
-
   private
 
   def user_params
     params.permit(:email, :date_of_birth, :name, :obituary, :password, :profile_picture)
   end
-
-  # def attach_picture(profile)
-  #   profile.profile_picture.attach(
-  #     io: File.open(params[:profile_picture][:io]),
-  #     filename: params[:profile_picture][:filename],
-  #     content_type: params[:profile_picture][:content_type]
-  #   )
-  #end
 end
-
-# user_1.profile_picture.attach(
-#   io: File.open('./public/profile_pictures/profile-picture.png'),
-#   filename: 'profile-picture.png',
-#   content_type: 'application/png'
-#)
