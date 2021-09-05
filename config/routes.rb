@@ -6,6 +6,7 @@ Rails.application.routes.draw do
         patch '/profile_picture', to: 'users#profile_picture'
         get :profile_picture, on: :member
         resources :executors, only: [:create, :update, :destroy, :index]
+        resources :recipients, only: [:create, :update, :destroy, :index]
       end
     end
   end
