@@ -40,6 +40,11 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def email
+    user = User.find(params[:user_id])
+    UserMailer.send_email(user).deliver_later
+  end
+
   private
 
   def user_params
