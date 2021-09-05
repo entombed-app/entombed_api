@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       post '/login', to: 'sessions#create'
       resources :users, only: [:create, :show, :update] do
         patch '/profile_picture', to: 'users#profile_picture'
+        post '/email', to: 'users#email'
         resources :images, only: [:create, :destroy]
         get :profile_picture, on: :member
         resources :executors, only: [:create, :update, :destroy, :index]
