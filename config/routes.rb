@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         resources :images, only: [:create, :destroy]
         get :profile_picture, on: :member
         resources :executors, only: [:create, :update, :destroy, :index]
+        resources :recipients, only: [:create, :update, :destroy, :index]
       end
     end
   end
