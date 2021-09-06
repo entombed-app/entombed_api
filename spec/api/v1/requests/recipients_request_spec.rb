@@ -229,6 +229,49 @@ RSpec.describe 'Recipient Requests' do
       expect(recipients[:data][0][:attributes][:name]).to eq 'test name'
     end
 
+    it 'returns multiple recipients' do
+      user_id = create(:user).id
+      recipient_details = {
+        email: 'test@test.com',
+        name: 'test name'
+      }
+      next_rec = {
+        email: 'ex@test.com',
+        name: 'test name',
+      }
+      third_rec = {
+        email: 'exam@ple.com',
+        name: 'test name',
+      }
+      headers = {"CONTENT_TYPE"  => 'application/json'}
+      post "/api/v1/users/#{user_id}/recipients", headers: headers, params: JSON.generate(recipient_details)
+      post "/api/v1/users/#{user_id}/recipients", headers: headers, params: JSON.generate(next_rec)
+      post "/api/v1/users/#{user_id}/recipients", headers: headers, params: JSON.generate(third_rec)
+
+      get "/api/v1/users/#{user_id}/recipients"
+      expect(response.status).to eq 200
+
+      recipients = JSON.parse(response.body, symbolize_names: true)
+
+      expect(recipients).is_a? Hash
+      expect(recipients).to have_key(:data)
+      expect(recipients[:data]).is_a? Array
+      expect(recipients[:data].length).to eq 3
+      recipients[:data].each do |recip|
+        expect(recip).to have_key(:id)
+        expect(recip[:id]).is_a? String
+        expect(recip).to have_key(:type)
+        expect(recip[:type]).to eq 'recipient'
+        expect(recip).to have_key(:attributes)
+        expect(recip[:attributes]).is_a? Hash
+        expect(recip[:attributes]).to have_key(:email)
+        expect(recip[:attributes][:email]).is_a? String
+        expect(recip[:attributes]).to have_key(:name)
+        expect(recip[:attributes][:name]).is_a? String
+      end
+      
+    end
+
     it 'returns an empty array if no recipients' do
       user_id = create(:user).id
       get "/api/v1/users/#{user_id}/recipients"
