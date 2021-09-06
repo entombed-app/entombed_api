@@ -19,7 +19,7 @@ user_1.profile_picture.attach(
 user_1.executors.create!(name: 'younger bobby', email: 'bob@bee.com', phone: '888-999-1111')
 
 user_1.recipients.create!(name: 'Uncle bobby', email: 'galloway.taylor@gmail.com')
-user_1.recipients.create!(name: 'Aunty bobby', email: 'auntybobby@test.com')
+user_1.recipients.create!(name: 'Aunty bobby', email: 'noah.zinter@gmail.com')
 user_1.recipients.create!(name: 'Gary bobby', email: 'garybobby@test.com')
 user_1.recipients.create!(name: 'Jerry bobby', email: 'Jerrybobby@test.com')
 user_1.recipients.create!(name: 'Cousin bobby', email: 'Cousinbobby@test.com')

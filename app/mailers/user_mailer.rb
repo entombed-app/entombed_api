@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-    default :from => 'elegy.notify@gmail.com'
+  default :from => 'elegy.notify@gmail.com'
 
   # send a signup email to the user, pass in the user object that   contains the user's email address
   def send_email(user)
