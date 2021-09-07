@@ -42,12 +42,19 @@ class Api::V1::UsersController < ApplicationController
 
   def email
     user = User.find(params[:user_id])
-    UserMailer.send_email(user).deliver_later
+    if params[:user_url]
+      user_url = params[:user_url]
+      UserMailer.send_email(user, user_url).deliver_later
+    else
+      render json: {
+        error: 'No memorial url detected'
+      }, status: 400
+    end  
   end
 
   private
 
   def user_params
-    params.permit(:email, :date_of_birth, :name, :obituary, :password, :profile_picture)
+    params.permit(:email, :date_of_birth, :name, :obituary, :password, :profile_picture, :user_url)
   end
 end

@@ -22,4 +22,4 @@ user_1.recipients.create!(name: 'Uncle bobby', email: 'galloway.taylor@gmail.com
 user_1.recipients.create!(name: 'Aunty bobby', email: 'noah.zinter@gmail.com')
 user_1.recipients.create!(name: 'Gary bobby', email: 'garybobby@test.com')
 user_1.recipients.create!(name: 'Jerry bobby', email: 'Jerrybobby@test.com')
-user_1.recipients.create!(name: 'Cousin bobby', email: 'Cousinbobby@test.com')
+user_1.recipients.create!(name: 'Cousin bobby', email: 'Braumuller02@gmail.com')
