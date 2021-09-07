@@ -95,6 +95,23 @@ RSpec.describe 'Image attachment requests' do
   end
 
   describe 'delete' do
-    it 'can delete an image'
+    it 'can delete an image' do
+      user = create(:user)
+      post "/api/v1/users/#{user.id}/images", params: {
+        image: fixture_file_upload('profile2.png')
+      }
+      post "/api/v1/users/#{user.id}/images", params: {
+        image: fixture_file_upload('profile.png')
+      }
+      
+      expect(response.status).to eq 201
+
+      img = user.images.last
+
+      delete "/api/v1/users/#{user.id}/images/#{img.id}"
+      expect(response.status).to eq 204
+
+      expect{user.images.find(img.id)}.to raise_error(ActiveRecord::RecordNotFound)
+    end
   end
 end
