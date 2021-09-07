@@ -10,4 +10,9 @@ class Api::V1::ImagesController < ApplicationController
       }, status: 400
     end
   end
+
+  def destroy
+    @image = ActiveStorage::Attachment.find(params[:id])
+    @image.purge
+  end
 end
