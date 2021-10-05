@@ -18,12 +18,15 @@ RSpec.describe 'Email send' do
       }
 
       email = UserMailer.send_email(user, user_url)
+      expected_text = "Sorry to inform you, Uncle bobby\r\n\r\n#{user.name} has passed away. #{user.name} cared for you very much, and wanted you to be notified of this unfortunate circumstance.\r\n\r\n#{user.name} created a memorial page to help comfort you in this trying time. You can visit the page here: #{user_url}\r\n"
 
       expect(email.subject).to eq("Our Condolences")
       expect(email.to[0]).to eq("unclebobby@test.com")
       expect(email.from[0]).to eq("elegy.notify@gmail.com")
-      expect(email.body).to include("Sorry to inform you, Uncle bobby")
-      expect(email.body).to include("http://localhost:3000/#{user.id}/memorial")
+      expect(email.parts.length).to eq 2
+      expect(email.text_part.body.raw_source).to eq expected_text
+      expect(email.html_part.body.raw_source).to include("Sorry to inform you, Uncle bobby")
+      expect(email.html_part.body.raw_source).to include(user_url)
     end
 
     it 'can send emails to multiple user recipients' do
@@ -46,12 +49,15 @@ RSpec.describe 'Email send' do
       }
 
       email = UserMailer.send_email(user, user_url)
+      expected_text = "Sorry to inform you, Cousin bobby\r\n\r\n#{user.name} has passed away. #{user.name} cared for you very much, and wanted you to be notified of this unfortunate circumstance.\r\n\r\n#{user.name} created a memorial page to help comfort you in this trying time. You can visit the page here: #{user_url}\r\n"
 
       expect(email.subject).to eq("Our Condolences")
-      expect(email.to[0]).to be_a(String)
-      expect(email.from[0]).to be_a(String)
-      expect(email.body).to include("Sorry to inform you,")
-      expect(email.body).to include("http://localhost:3000/#{user.id}/memorial")
+      expect(email.to[0]).to eq 'Cousinbobby@test.com'
+      expect(email.from[0]).to eq("elegy.notify@gmail.com")
+      expect(email.parts.length).to eq 6
+      expect(email.text_part.body.raw_source).to eq expected_text
+      expect(email.html_part.body.raw_source).to include("Sorry to inform you, Uncle bobby")
+      expect(email.html_part.body.raw_source).to include(user_url)
     end
 
     it 'will return an error if user not found' do
@@ -82,5 +88,3 @@ RSpec.describe 'Email send' do
     end
   end
 end
-
-    
