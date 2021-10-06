@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all
+Recipient.destroy_all
 
 user_1 = User.create!(email: 'ex@ample.com', name: 'Elder Bobby', date_of_birth: '1999/01/02', obituary: 'Tedious and brief', password: 'password')
 

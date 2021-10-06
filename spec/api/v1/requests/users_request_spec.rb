@@ -19,6 +19,7 @@ RSpec.describe 'Users Requests' do
       expect(created_user.date_of_birth.to_s).to eq '2001-02-03'
       expect(created_user.name).to eq 'Jane Doe'
       expect(created_user.obituary).to eq 'Tedious and brief'
+      expect(created_user.user_etd).to eq nil
       expect(created_user.password).to eq nil
       expect(created_user.password_digest).is_a? String
     end
@@ -57,6 +58,8 @@ RSpec.describe 'Users Requests' do
       expect(serialized_user[:data][:attributes][:obituary]).is_a? String
       expect(serialized_user[:data][:attributes]).to have_key(:etd)
       expect(serialized_user[:data][:attributes][:etd].to_date).is_a? Date
+      expect(serialized_user[:data][:attributes]).to have_key(:user_etd)
+      expect(serialized_user[:data][:attributes][:user_etd]).to eq nil
     end
 
     it 'ignores extra data' do
@@ -298,7 +301,6 @@ RSpec.describe 'Users Requests' do
       expect(serialized_user[:data][:attributes][:images_urls]).is_a? Array
       expect(serialized_user[:data][:attributes][:images_urls].length).to eq 1
       expect(serialized_user[:data][:attributes][:images_urls][0]).is_a? String
-
     end
 
     it 'raises error for non-existent user' do
@@ -467,6 +469,36 @@ RSpec.describe 'Users Requests' do
       error = JSON.parse(response.body, symbolize_names: true)
 
       expect(error[:error]).to eq 'User name, email, birthdate cannot be empty'
+    end
+
+    it 'can update user_etd' do
+      user_details = {
+        email: 'ex@ample.com',
+        date_of_birth: '2001/02/03',
+        name: 'Jane Doe',
+        obituary: 'Tedious and brief',
+        password: 'password123'
+      }
+      headers = {"CONTENT_TYPE"  => 'application/json'}
+      post '/api/v1/users', headers: headers, params: JSON.generate(user_details)
+      created_user = User.last
+      expect(response.status).to eq 201
+      expect(created_user.email).to eq 'ex@ample.com'
+      expect(created_user.date_of_birth.to_s).to eq '2001-02-03'
+      expect(created_user.name).to eq 'Jane Doe'
+      expect(created_user.obituary).to eq 'Tedious and brief'
+
+      updated_user_details = {
+        user_etd: '2030/01/02'
+      }
+      patch "/api/v1/users/#{created_user.id}", headers: headers, params: JSON.generate(updated_user_details)
+
+      expect(response.status).to eq 200
+
+      updated_user = JSON.parse(response.body, symbolize_names: true)
+
+      expect(updated_user[:data][:attributes][:user_etd]).is_a? String
+      expect(updated_user[:data][:attributes][:user_etd]).to eq '2030-01-02'
     end
   end
 end

@@ -1,7 +1,7 @@
 class UserSerializer
   include JSONAPI::Serializer
   include Rails.application.routes.url_helpers
-  attributes :email, :name, :date_of_birth, :obituary, :profile_picture_url, :images_urls
+  attributes :email, :name, :date_of_birth, :obituary, :profile_picture_url, :images_urls, :user_etd
 
   has_many :executors, serializer: ExecutorSerializer
   has_many :recipients, serializer: RecipientSerializer
