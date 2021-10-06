@@ -6,6 +6,7 @@ class UserMailer < ApplicationMailer
     user.recipients.each do |recipient|
         @recipient = recipient
         @user = user
+        @executor = user.executors.first
         @user_url = user_url
         mail( 
             :to => @recipient.email,
