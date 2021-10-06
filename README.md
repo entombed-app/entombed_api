@@ -8,7 +8,7 @@ Back-End:
 
 
 Front-End:
-Â
+
 * Taylor Galloway [linkedin](https://www.linkedin.com/in/taylor-galloway) [github](https://github.com/tylrs/)
 
 * Ashley O'Brien [linkedin](https://www.linkedin.com/in/ashley-o-brien-30456a51) [github](https://github.com/AshleyOh-bit/)
