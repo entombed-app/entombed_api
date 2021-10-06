@@ -80,7 +80,8 @@ Example JSON response:
                 "http://elegy-backend.herokuapp.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBaQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--af1eaf199b0916b1856ac9d1bb367d2ad3817179/william.png",
                 "http://elegy-backend.herokuapp.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBaUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--732e9658bad7bf2f8dc0fe6b5da0a77c86e8552e/william.png"
             ],
-            "etd": "2119-06-22"
+            "etd": "2119-06-22",
+            "user_etd: nil
         },
         "relationships": {
             "executors": {
@@ -133,6 +134,7 @@ User params which can be edited include:
     name:
     obituary:
     password:
+    user_etd:
 ```
 * Edit User Profile Picture
 
