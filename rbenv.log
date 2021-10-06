@@ -1,0 +1,125 @@
++(/usr/local/bin/rbenv:23): enable -f /usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-realpath.dylib realpath
++(/usr/local/bin/rbenv:54): '[' -z '' ']'
++(/usr/local/bin/rbenv:55): RBENV_ROOT=/Users/nwz/.rbenv
++(/usr/local/bin/rbenv:59): export RBENV_ROOT
++(/usr/local/bin/rbenv:61): '[' -z '' ']'
++(/usr/local/bin/rbenv:62): RBENV_DIR=/Users/nwz/capstone/entombed_api
++(/usr/local/bin/rbenv:69): export RBENV_DIR
++(/usr/local/bin/rbenv:71): '[' -n '' ']'
++(/usr/local/bin/rbenv:71): export RBENV_ORIG_PATH=/Users/nwz/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/latest/bin
++(/usr/local/bin/rbenv:71): RBENV_ORIG_PATH=/Users/nwz/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/latest/bin
++(/usr/local/bin/rbenv:73): shopt -s nullglob
+++(/usr/local/bin/rbenv:75): abs_dirname /usr/local/bin/rbenv
+++(/usr/local/bin/rbenv:25): abs_dirname(): local path
++++(/usr/local/bin/rbenv:26): abs_dirname(): realpath /usr/local/bin/rbenv
+++(/usr/local/bin/rbenv:26): abs_dirname(): path=/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv
+++(/usr/local/bin/rbenv:27): abs_dirname(): echo /usr/local/Cellar/rbenv/1.2.0/libexec
++(/usr/local/bin/rbenv:75): bin_path=/usr/local/Cellar/rbenv/1.2.0/libexec
++(/usr/local/bin/rbenv:79): export PATH=/usr/local/Cellar/rbenv/1.2.0/libexec:/Users/nwz/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/latest/bin
++(/usr/local/bin/rbenv:79): PATH=/usr/local/Cellar/rbenv/1.2.0/libexec:/Users/nwz/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/latest/bin
++(/usr/local/bin/rbenv:81): RBENV_HOOK_PATH=:/Users/nwz/.rbenv/rbenv.d
++(/usr/local/bin/rbenv:82): '[' /usr/local/Cellar/rbenv/1.2.0 '!=' /Users/nwz/.rbenv ']'
++(/usr/local/bin/rbenv:84): RBENV_HOOK_PATH=:/Users/nwz/.rbenv/rbenv.d:/usr/local/Cellar/rbenv/1.2.0/rbenv.d
++(/usr/local/bin/rbenv:86): RBENV_HOOK_PATH=:/Users/nwz/.rbenv/rbenv.d:/usr/local/Cellar/rbenv/1.2.0/rbenv.d:/usr/local/etc/rbenv.d:/etc/rbenv.d:/usr/lib/rbenv/hooks
++(/usr/local/bin/rbenv:90): RBENV_HOOK_PATH=/Users/nwz/.rbenv/rbenv.d:/usr/local/Cellar/rbenv/1.2.0/rbenv.d:/usr/local/etc/rbenv.d:/etc/rbenv.d:/usr/lib/rbenv/hooks
++(/usr/local/bin/rbenv:91): export RBENV_HOOK_PATH
++(/usr/local/bin/rbenv:93): shopt -u nullglob
++(/usr/local/bin/rbenv:96): command=version
++(/usr/local/bin/rbenv:97): case "$command" in
+++(/usr/local/bin/rbenv:110): command -v rbenv-version
++(/usr/local/bin/rbenv:110): command_path=/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version
++(/usr/local/bin/rbenv:111): '[' -z /usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version ']'
++(/usr/local/bin/rbenv:119): shift 1
++(/usr/local/bin/rbenv:120): '[' '' = --help ']'
++(/usr/local/bin/rbenv:127): exec /usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version
+++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version:11): rbenv-version-name
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-name:6): '[' -z '' ']'
+++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-name:7): rbenv-version-file
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file:7): target_dir=
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file:22): '[' -n '' ']'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file:25): find_local_version_file /Users/nwz/capstone/entombed_api
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file:10): find_local_version_file(): local root=/Users/nwz/capstone/entombed_api
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file:11): find_local_version_file(): [[ /Users/nwz/capstone/entombed_api =~ ^//[^/]*$ ]]
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file:12): find_local_version_file(): '[' -s /Users/nwz/capstone/entombed_api/.ruby-version ']'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file:13): find_local_version_file(): echo /Users/nwz/capstone/entombed_api/.ruby-version
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file:14): find_local_version_file(): return 0
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-name:7): RBENV_VERSION_FILE=/Users/nwz/capstone/entombed_api/.ruby-version
+++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-name:8): rbenv-version-file-read /Users/nwz/capstone/entombed_api/.ruby-version
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file-read:6): VERSION_FILE=/Users/nwz/capstone/entombed_api/.ruby-version
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file-read:8): '[' -e /Users/nwz/capstone/entombed_api/.ruby-version ']'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file-read:10): IFS=' 	
+'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file-read:11): words=($(cut -b 1-1024 "$VERSION_FILE"))
+++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file-read:11): cut -b 1-1024 /Users/nwz/capstone/entombed_api/.ruby-version
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file-read:12): version=2.7.2
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file-read:14): '[' 2.7.2 = .. ']'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file-read:14): [[ 2.7.2 == */* ]]
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file-read:16): '[' -n 2.7.2 ']'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file-read:17): echo 2.7.2
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file-read:18): exit
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-name:8): RBENV_VERSION=2.7.2
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-name:11): OLDIFS=' 	
+'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-name:12): IFS='
+'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-name:12): scripts=(`rbenv-hooks version-name`)
+++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-name:12): rbenv-hooks version-name
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:9): '[' version-name = --complete ']'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:18): RBENV_COMMAND=version-name
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:19): '[' -z version-name ']'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:24): enable -f /usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-realpath.dylib realpath
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:55): IFS=:
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:55): hook_paths=($RBENV_HOOK_PATH)
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:57): shopt -s nullglob
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:58): for path in '"${hook_paths[@]}"'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:58): for path in '"${hook_paths[@]}"'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:58): for path in '"${hook_paths[@]}"'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:58): for path in '"${hook_paths[@]}"'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:58): for path in '"${hook_paths[@]}"'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:63): shopt -u nullglob
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-name:13): IFS=' 	
+'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-name:18): '[' -z 2.7.2 ']'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-name:18): '[' 2.7.2 = system ']'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-name:28): version_exists 2.7.2
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-name:24): version_exists(): local version=2.7.2
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-name:25): version_exists(): '[' -d /Users/nwz/.rbenv/versions/2.7.2 ']'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-name:29): echo 2.7.2
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version:11): version_name=2.7.2
+++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version:12): rbenv-version-origin
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-origin:6): unset RBENV_VERSION_ORIGIN
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-origin:8): OLDIFS=' 	
+'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-origin:9): IFS='
+'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-origin:9): scripts=(`rbenv-hooks version-origin`)
+++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-origin:9): rbenv-hooks version-origin
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:9): '[' version-origin = --complete ']'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:18): RBENV_COMMAND=version-origin
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:19): '[' -z version-origin ']'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:24): enable -f /usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-realpath.dylib realpath
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:55): IFS=:
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:55): hook_paths=($RBENV_HOOK_PATH)
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:57): shopt -s nullglob
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:58): for path in '"${hook_paths[@]}"'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:58): for path in '"${hook_paths[@]}"'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:58): for path in '"${hook_paths[@]}"'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:58): for path in '"${hook_paths[@]}"'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:58): for path in '"${hook_paths[@]}"'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-hooks:63): shopt -u nullglob
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-origin:10): IFS=' 	
+'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-origin:15): '[' -n '' ']'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-origin:17): '[' -n '' ']'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-origin:20): rbenv-version-file
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file:7): target_dir=
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file:22): '[' -n '' ']'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file:25): find_local_version_file /Users/nwz/capstone/entombed_api
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file:10): find_local_version_file(): local root=/Users/nwz/capstone/entombed_api
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file:11): find_local_version_file(): [[ /Users/nwz/capstone/entombed_api =~ ^//[^/]*$ ]]
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file:12): find_local_version_file(): '[' -s /Users/nwz/capstone/entombed_api/.ruby-version ']'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file:13): find_local_version_file(): echo /Users/nwz/capstone/entombed_api/.ruby-version
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version-file:14): find_local_version_file(): return 0
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version:12): version_origin=/Users/nwz/capstone/entombed_api/.ruby-version
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version:14): '[' /Users/nwz/capstone/entombed_api/.ruby-version = /Users/nwz/.rbenv/version ']'
++(/usr/local/Cellar/rbenv/1.2.0/libexec/rbenv-version:17): echo '2.7.2 (set by /Users/nwz/capstone/entombed_api/.ruby-version)'
