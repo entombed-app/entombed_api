@@ -28,6 +28,8 @@ RSpec.describe 'Email send' do
       expect(email.text_part.body.raw_source).to eq expected_text
       expect(email.html_part.body.raw_source).to include("Sorry to inform you, Uncle bobby")
       expect(email.html_part.body.raw_source).to include(user_url)
+      expect(email.html_part.body.raw_source).to include("#{user.name} has passed away. #{user.name} cared for you very much, and wanted to show you how they would like to be remembered.")
+      expect(email.html_part.body.raw_source).to include("#{user.name} designated Phineas Tinkerton as the executor of this memorial page, if you have any questions you can contact Phineas Tinkerton at 123-456-7890 or ex@ample.com")
     end
 
     it 'can send emails to multiple user recipients' do
@@ -59,6 +61,8 @@ RSpec.describe 'Email send' do
       expect(email.text_part.body.raw_source).to eq expected_text
       expect(email.html_part.body.raw_source).to include("Sorry to inform you, Uncle bobby")
       expect(email.html_part.body.raw_source).to include(user_url)
+      expect(email.html_part.body.raw_source).to include("#{user.name} has passed away. #{user.name} cared for you very much, and wanted to show you how they would like to be remembered.")
+      expect(email.html_part.body.raw_source).to include("#{user.name} designated Phineas Tinkerton as the executor of this memorial page, if you have any questions you can contact Phineas Tinkerton at 123-456-7890 or ex@ample.com")
     end
 
     it 'will return an error if user not found' do
