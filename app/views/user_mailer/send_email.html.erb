@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
     <h1>Sorry to inform you, <%= @recipient.name %></h1>
     <p><%= @user.name %> has passed away. <%= @user.name %> cared for you very much, and wanted to show you how they would like to be remembered.</p>
     <p> Here is a link to <%= @user.name %>'s   <a href =<%= @user_url %>> Memorial Page </a> </p>
     <p><%= @user.name %> designated <%= @executor.name %> as the executor of this memorial page, if you have any questions you can contact <%= @executor.name %> at <%= @executor.phone %> or <%= @executor.email %></p>
-  </body>
-</html>
