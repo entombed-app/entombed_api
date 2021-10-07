@@ -19,17 +19,13 @@ RSpec.describe 'Email send' do
 
       email = UserMailer.send_email(user, user_url)
 
-      expected_text = "Sorry to inform you, Uncle bobby\r\n\r\n#{user.name} has passed away. #{user.name} cared for you very much, and wanted to show you how they would like to be remembered.\r\n\r\n#{user.name} created a memorial page to help comfort you in this trying time. You can visit the page here: #{user_url}\r\n\r\n#{user.name} designated Phineas Tinkerton as the executor of this memorial page, if you have any questions you can contact Phineas Tinkerton at 123-456-7890 or ex@ample.com\r\n"
-
       expect(email.subject).to eq("Our Condolences")
       expect(email.to[0]).to eq("unclebobby@test.com")
       expect(email.from[0]).to eq("elegy.notify@gmail.com")
-      expect(email.parts.length).to eq 2
-      expect(email.text_part.body.raw_source).to eq expected_text
-      expect(email.html_part.body.raw_source).to include("Sorry to inform you, Uncle bobby")
-      expect(email.html_part.body.raw_source).to include(user_url)
-      expect(email.html_part.body.raw_source).to include("#{user.name} has passed away. #{user.name} cared for you very much, and wanted to show you how they would like to be remembered.")
-      expect(email.html_part.body.raw_source).to include("#{user.name} designated Phineas Tinkerton as the executor of this memorial page, if you have any questions you can contact Phineas Tinkerton at 123-456-7890 or ex@ample.com")
+      expect(email.body.raw_source).to include("Sorry to inform you, Uncle bobby")
+      expect(email.body.raw_source).to include(user_url)
+      expect(email.body.raw_source).to include("#{user.name} has passed away. #{user.name} cared for you very much, and wanted to show you how they would like to be remembered.")
+      expect(email.body.raw_source).to include("#{user.name} designated Phineas Tinkerton as the executor of this memorial page, if you have any questions you can contact Phineas Tinkerton at 123-456-7890 or ex@ample.com")
     end
 
     it 'can send emails to multiple user recipients' do
@@ -52,17 +48,14 @@ RSpec.describe 'Email send' do
       }
 
       email = UserMailer.send_email(user, user_url)
-      expected_text = "Sorry to inform you, Cousin bobby\r\n\r\n#{user.name} has passed away. #{user.name} cared for you very much, and wanted to show you how they would like to be remembered.\r\n\r\n#{user.name} created a memorial page to help comfort you in this trying time. You can visit the page here: #{user_url}\r\n\r\n#{user.name} designated Phineas Tinkerton as the executor of this memorial page, if you have any questions you can contact Phineas Tinkerton at 123-456-7890 or ex@ample.com\r\n"
 
       expect(email.subject).to eq("Our Condolences")
       expect(email.to[0]).to eq 'Cousinbobby@test.com'
       expect(email.from[0]).to eq("elegy.notify@gmail.com")
-      expect(email.parts.length).to eq 6
-      expect(email.text_part.body.raw_source).to eq expected_text
-      expect(email.html_part.body.raw_source).to include("Sorry to inform you, Uncle bobby")
-      expect(email.html_part.body.raw_source).to include(user_url)
-      expect(email.html_part.body.raw_source).to include("#{user.name} has passed away. #{user.name} cared for you very much, and wanted to show you how they would like to be remembered.")
-      expect(email.html_part.body.raw_source).to include("#{user.name} designated Phineas Tinkerton as the executor of this memorial page, if you have any questions you can contact Phineas Tinkerton at 123-456-7890 or ex@ample.com")
+      expect(email.body.raw_source).to include("Sorry to inform you, Cousin bobby")
+      expect(email.body.raw_source).to include(user_url)
+      expect(email.body.raw_source).to include("#{user.name} has passed away. #{user.name} cared for you very much, and wanted to show you how they would like to be remembered.")
+      expect(email.body.raw_source).to include("#{user.name} designated Phineas Tinkerton as the executor of this memorial page, if you have any questions you can contact Phineas Tinkerton at 123-456-7890 or ex@ample.com")
     end
 
     it 'will return an error if user not found' do
