@@ -10,8 +10,10 @@ class UserMailer < ApplicationMailer
         @user_url = user_url
         mail( 
             :to => @recipient.email,
-            :subject => 'Our Condolences'
-        )
+            :subject => 'Our Condolences') do |format|
+              format.html {render 'send_email' }
+              format.text { render 'send_plain_email'}
+            end
     end
   end
 end
