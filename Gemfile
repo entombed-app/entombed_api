@@ -14,6 +14,7 @@ gem 'bcrypt'
 gem "aws-sdk-s3", require: false
 gem 'rack-cors'
 gem 'image_processing', '~> 1.2'
+gem 'mini_magick', '~>4.9'
 gem 'active_storage_validations'
 
 group :development, :test do
